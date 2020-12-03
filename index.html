@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu button animation</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="button">
+        <div class="button-on"></div>
+        <div class="button-on"></div>
+        <div class="button-on"></div>
+      </div>
+    </div>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 100%;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        background: black;
+      }
+
+      .button {
+        width: 100px;
+        height: 100px;
+        padding: 20px;
+        position: relative;
+        transition: all 0.4s ease;
+      }
+
+      .button-on {
+        height: 25%;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        position: absolute;
+        background: white;
+        border-radius: 25%;
+        transition: all 0.4s ease;
+        transform-origin: 50% 50%;
+      }
+
+      .button-on:nth-child(1) {
+        top: 0;
+        bottom: auto;
+        transition-delay: 0.25s;
+      }
+
+      .button-on:nth-child(2) {
+        top: 45%;
+        bottom: auto;
+        transition-delay: 0.4s;
+      }
+
+      .button-on:nth-child(3) {
+        top: 90%;
+        bottom: auto;
+        transition-delay: 0.25s;
+      }
+
+      .button-off .button-on:nth-child(1) {
+        top: 45%;
+        bottom: auto;
+        transform: rotate(45deg);
+        transition-delay: 0.3s;
+      }
+
+      .button-off .button-on:nth-child(2) {
+        opacity: 0;
+        transition-delay: 0.1s;
+      }
+
+      .button-off .button-on:nth-child(3) {
+        top: 45%;
+        bottom: auto;
+        transform: rotate(-45deg);
+        transition-delay: 0.3s;
+      }
+    </style>
+
+    <script>
+      window.onload = () => {
+        Array.from(document.querySelectorAll(".button")).forEach((b) => {
+          b.addEventListener("click", (e) => {
+            let el;
+            if (e.target.className == "button-on") {
+              el = e.target.parentNode;
+            } else {
+              el = e.target;
+            }
+            el.classList.toggle("button-off");
+          });
+        });
+      };
+    </script>
+  </body>
+</html>
